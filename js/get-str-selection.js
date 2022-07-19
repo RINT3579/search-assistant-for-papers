@@ -1,7 +1,5 @@
 function send(type,contents) {
-    chrome.runtime.sendMessage({ type: type , contents:contents}, function(response) {
-        console.log("content script got a response" + response.message);
-    });
+    chrome.runtime.sendMessage({ type: type , contents:contents}, function() {});
 }
 
 document.addEventListener('mouseup',() =>{

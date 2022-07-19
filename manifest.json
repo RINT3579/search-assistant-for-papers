@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Search Assistant For Papers",
-  "version": "0.1.1",
+  "version": "0.2.4",
   "description": "マウスでなぞった文字列を論文検索サイトで検索できます",
   "action": {
 

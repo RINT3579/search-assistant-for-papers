@@ -10,25 +10,18 @@ function createMenu(str) {
         contexts: ["all"]
     })
 }
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function(request) {
 
-    console.log("TYPE   ",request.type);
-    console.log("CONTENTS   ",request.contents);
-
-    if (request.type === "none"){
-        console.log("発火しない!：：：",request.type)
-        removeMenu()
+    if (request.type === "str"){
+        createMenu(request.contents);
     }
     else{
-        console.log("受信側：："+ request.type,request.contents);
-        createMenu(request.contents);
-        sendResponse({ message: "OK" });
+        removeMenu()
     }
-
 });
 
 chrome.contextMenus.onClicked.addListener((info) => {
-    console.log("クリックされたメニューの名前：：："+info.selectionText);
+
     chrome.tabs.create({
         url: 'https://ieeexplore.ieee.org/search/searchresult.jsp?newsearch=true&queryText='+info.selectionText,
         active:true
@@ -41,6 +34,4 @@ chrome.contextMenus.onClicked.addListener((info) => {
         url: 'https://scholar.google.co.jp/scholar?lr=&q='+info.selectionText,
         active:false
     });
-    removeMenu()
-    console.log("DONE!");
 })
