@@ -3,7 +3,6 @@ function removeMenu(){
 }
 
 function createMenu(str) {
-    removeMenu();
     chrome.contextMenus.create({
         title:"【 "+ str + " 】を論文検索する",
         id: "search",
@@ -21,6 +20,7 @@ chrome.runtime.onMessage.addListener(function(request) {
 });
 
 chrome.contextMenus.onClicked.addListener((info) => {
+    removeMenu();
 
     chrome.tabs.create({
         url: 'https://ieeexplore.ieee.org/search/searchresult.jsp?newsearch=true&queryText='+info.selectionText,

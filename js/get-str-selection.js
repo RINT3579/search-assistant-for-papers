@@ -1,14 +1,14 @@
 function send(type,contents) {
-    chrome.runtime.sendMessage({ type: type , contents:contents}, function() {});
+    chrome.runtime.sendMessage({ type: type , contents:contents});
 }
 
 document.addEventListener('mouseup',() =>{
-    const selectedText = window.getSelection().toString();
-    if (selectedText.length < 1){
+    const selected = window.getSelection().toString();
+    if (selected.length < 1){
         send("none")
     }
     else {
-        console.log(selectedText);
-        send("str",selectedText);
+        console.log(selected);
+        send("str",selected);
     }
 })
